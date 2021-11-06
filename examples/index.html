@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> MAMEDUL ISLAM</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<style>
+		
+		#btn_third{
+			margin: 24px;
+		}
+		
+		.title,
+		instruction{
+			text-align:center;
+		}
+		
+	</style>
+	
+	<script>
+	</script>
+
+	<script src="./src/jdoms-v1.0.0.min.js"></script>
+
+</head>
+<body class="body">
+
+	<h1 class="title">jDoms</h1>
+	<h4 class="instruction">open this file codes and your browser console to see the result</h4>
+
+	<div class="btn_groups">
+		<div class="btn_heading"> Headings</div>
+		<button class="action_btn"  id="btn_first">First Clicker</button> <br/>
+		<button class="action_btn"  id="btn_second">Second Clicker</button> <br/>
+		<button class="action_add_btn"  id="btn_third">Third Clicker</button>
+		<button class="action_add_btn"  id="btn_forth">Forth Clicker</button>
+	</div>
+
+	<div class="pre">
+	</div>
+
+	<div id="loading" style="display:none;background:#003d75;background:rgba(0,61,116,0.6);">
+		<div style="height:100%;display:flex;-ms-flex-pack:center;justify-content:center;text-align:center;">
+			<div style="align-self:center;align-items:center;">
+				<div class="loading_wheel">
+					<div class="wheel wheel_0">0</div>
+					<div class="wheel wheel_1">1</div>
+					<div class="wheel wheel_2">2</div>
+					<div class="wheel wheel_3">3</div>
+					<div class="wheel wheel_4">4</div>
+					<div class="wheel wheel_5">5</div>
+					<div class="wheel wheel_6">6</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loading_wheel">
+		<div class="wheel wheel_1">11</div>
+		<div class="wheel wheel_6">66</div>
+	</div>
+	<form name="dd">
+		<input class="" name="inp1">
+		<input class="class1" name="inp2">
+		<input type="checkbox" class="checkbox" name="inp2" checked>
+	</form>
+	
+	<style>
+		#Example{box-sizing: border-box;}
+	</style>
+	<div id="Example" style="width: 100px; height: 1in; padding: 4px; margin: 16px; border: 2px red solid; outline: 10px solid gray;"> MAMEDUL ISLAM </div>
+	
+	<div id="Example2" style="width: 100px; height: 1in; padding: 4px; margin: 16px; border: 2px red solid; outline: 10px solid gray; overflow: auto;">
+		<div> MAMEDUL ISLAM </div>
+		
+		<img src="https://user-images.githubusercontent.com/64060121/139841408-6879c900-17a6-45d0-b435-c7e0c7df52aa.jpg">
+		
+	</div>
+
+<script>
+
+
+</script>
+
+
+<script>
+
+
+//globe function check
+
+console.log( "isSet", jDoms.isSet( undefined ) );
+console.log( "isSet", jDoms.isSet( 2 ) );
+console.log( "isSet", jDoms.isSet( false ) );
+
+var mam;
+console.log( "isUndefined", jDoms.isUndefined( Object ) );
+console.log( "isUndefined", jDoms.isUndefined( false ) );
+console.log( "isUndefined", jDoms.isUndefined( undefined ) );
+console.log( "isUndefined", jDoms.isUndefined( mam ) );
+
+
+console.log( "_isFinite", jDoms.isFinite( Object ) );
+console.log( "_isFinite", jDoms.isFinite( 2222e585888 ) );
+console.log( "_isFinite", jDoms.isFinite( 2222 ) );
+console.log( "_isFinite", jDoms.isFinite( -2536 ) );
+
+console.log( "_isInfinity", jDoms.isInfinity( 5555555 ) );
+console.log( "_isInfinity", jDoms.isInfinity( -25362 ) );
+console.log( "_isInfinity", jDoms.isInfinity( 2e5555555 ) );
+console.log( "_isInfinity", jDoms.isInfinity( 8222E+2555555 ) );
+
+console.log( "_isBoolean", jDoms.isBoolean( false ) );
+console.log( "_isBoolean", jDoms.isBoolean( true ) );
+
+console.log( "_isBigInt", jDoms.isBigInt( 20 ) );
+console.log( "_isBigInt", jDoms.isBigInt( "2k" ) );
+console.log( "_isBigInt", jDoms.isBigInt( 2n ) );
+console.log( "_isBigInt", jDoms.isBigInt( 0n ) );
+
+console.log( "_isFlatten", jDoms.isFlatten( false ) );
+
+console.log( "_isEmpty", jDoms.isEmpty( undefined ) );
+console.log( "_isEmpty", jDoms.isEmpty( false ) );
+
+
+console.log( "_isArray", jDoms.isArray( {} ) );
+console.log( "_isArray", jDoms.isArray( [] ) );
+
+console.log( "_isFunction", jDoms.isFunction( Object ) );
+
+console.log( "_isSymbol", jDoms.isSymbol( Symbol ) );
+console.log( "_isSymbol", jDoms.isSymbol( Symbol() ) );
+
+console.log( "_now", jDoms.now( ) );
+
+
+console.log( "trim", jDoms.trim( " {1,2,3,6,5,2,1,4,5} " ) );
+console.log( "trim", jDoms.trim( [1,2, " n ",3,6,5,2,1,4,5] ) );
+console.log( "unique", jDoms.unique( [1,2,3,6,5,2,1,4,5] ) );
+
+console.log( "_unique", jDoms.unique( "MAMEDUL ISLAM" ) );
+console.log( "_unique", jDoms.unique( 25362145789325 ) );
+
+console.log( "merge", jDoms.merge( [1,2,3,6,5,2,1,4,5], {1:"Abbab", "nam":"MEEM"} ) );
+
+var rawStr = "MAMEDUL ISLAM{}!~#~$%&*$($)))$1236785";
+console.log( "encode", jDoms.encodeString( rawStr ) );
+console.log( "decode", jDoms.decodeString( jDoms.encodeString( rawStr ) ) );
+
+console.log( "bas64encode", jDoms.encodeBase64( rawStr ) );
+console.log( "base64decode", jDoms.decodeBase64( jDoms.encodeBase64( rawStr ) ) );
+
+//console.log( "_stringify", jDoms.stringify( document ) );
+
+jDoms.delay( function(){ console.log("delay", 200); }, 2000 );
+
+console.log( "now", jDoms.now( ) );
+
+var myPromise = new jDoms.promise(function(success, error){
+	
+	if( typeof MAMEDUL!="undefined"){ 
+		success("No error");
+	}else{
+		error("error");
+	}
+
+});
+
+myPromise.then( function(result){
+	console.log( "promise_ok", result );
+}, function(err){
+	console.log( "promise_catch", err );
+})
+
+var json_payload = '{"name": "jason123", "email": "email@xyz.com", "password": "password", "gender": "male", "age": 21, "mobile_number": "0322 8075833", "company_name": "xyz", "verification_status": 0, "image_url": "image.png", "address": "main address", "lattitude": 0, "longitude": 0, "message": "my message", "profession_id": 1, "designation_id": 1, "skills": [ { "id": 1, "custom" : "new custom1" } ]}';
+
+console.log( "jsonParse", jDoms.jsonParse(json_payload) );
+
+var xml_data = `<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>`;
+
+console.log( "xmlParse", jDoms.xmlParse(xml_data) );
+
+
+var html_data = `<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>MAMEDUL</div>
+</body>
+</html>`;
+
+console.log( "htmlParse", jDoms.htmlParse(html_data) );
+
+
+// selectors
+console.log( "jDoms");
+console.log( jDoms("body") );
+
+console.log( "jDoms doms" );
+console.log( jDoms("body").doms(".wheel") );
+
+console.log( "jDoms find" );
+console.log( jDoms("body").find(".wheel") );
+
+console.log( "jDoms search" );
+console.log( jDoms("body").search(".wheel_5") );
+
+console.log( "jDoms index" );
+console.log( jDoms(".wheel").index(1) );
+
+console.log( "jDoms key" );
+console.log( jDoms(".wheel").key(1) );
+console.log( jDoms({"name":"MAMEDUL ISLAM", "home": "Bangladesh", "phone":"+8801847406830"}).key("phone") );
+
+console.log( "jDoms domIndex" );
+console.log( jDoms(".wheel").domIndex(1) );
+
+console.log( "jDoms child" );
+console.log( jDoms(".loading_wheel").child(".wheel") );
+console.log( jDoms(".loading_wheel").child(".wheel_1") );
+
+console.log( "jDoms children" );
+console.log( jDoms(".loading_wheel").children(".wheel") );
+console.log( jDoms(".loading_wheel").children(".wheel_6") );
+
+console.log( "jDoms match" );
+console.log( jDoms("div").match(".wheel") );
+
+console.log( "jDoms matchTo" );
+console.log( jDoms("div").matchTo(".loading_wheel") );
+
+console.log( "jDoms parent" );
+console.log( jDoms(".wheel").parent(".loading_wheel") );
+
+console.log( "jDoms closest" );
+console.log( jDoms(".wheel").closest("body") );
+
+console.log( "jDoms merge" );
+console.log( jDoms(".loading_wheel").merge("body") );
+
+console.log( "jDoms unique" );
+console.log( jDoms(".loading_wheel, div").unique() );
+console.log( jDoms(".loading_wheel").unique() );
+
+console.log( "jDoms is" );
+console.log( jDoms(".loading_wheel").is("div") );
+
+console.log( "jDoms isSame" );
+console.log( jDoms(".loading_wheel").isSame("div.loading_wheel") );
+
+console.log( "jDoms isContains" );
+console.log( jDoms(".loading_wheel").isContains("body") );
+console.log( jDoms(".loading_wheel").isContains("div.wheel") );
+
+console.log( "jDoms isContainsBy" );
+console.log( jDoms(".loading_wheel").isContainsBy("div.wheel") );
+console.log( jDoms(".loading_wheel").isContainsBy("body") );
+
+console.log( "jDoms previous" );
+console.log( jDoms("div.wheel_1").previous() );
+console.log( jDoms("div.wheel_6").previous("div.wheel_5") );
+
+console.log( "jDoms next" );
+console.log( jDoms("div.wheel_1").next() );
+console.log( jDoms("div.wheel_1").next("div.wheel_6") );
+
+console.log( "jDoms first" );
+console.log( jDoms("div.wheel").first() );
+console.log( jDoms("div.wheel").first("div.wheel_1") );
+console.log( jDoms("div.wheel").first("div.wheel_0") );
+
+console.log( "jDoms last" );
+console.log( jDoms("div.wheel").last() );
+console.log( jDoms("div.wheel").last("div.wheel_6") );
+
+console.log( "jDoms clone" );
+//console.log( jDoms("div.wheel").last().clone() );
+console.log( jDoms("div.pre").appendHtml(  jDoms("div.loading_wheel").last().clone() ) );
+//console.log( jDoms("div.loading_wheel").last().clone().appendTo("div.pre") );
+
+console.log( "jDoms each" );
+jDoms("div.wheel").each( function(item){
+	//console.log( item ); console.log( item.innerHTML );
+} );
+
+
+
+
+
+
+//Event
+//jDoms("body").appendHtml( jDoms("div p", {"style":"color: green"}, "instant").create().index(0) );
+
+//jDoms("input", {"class":"instant"}).create().index(0);
+//console.log( jDoms("div", {"class":"instant"}, "instant").create() );
+//console.log( jDoms("div", {"class":"instant"}, "instant").create().index(0) );
+
+//document.body.appendChild( jDoms("div", {"class":"instant"}, "instant").create().index(0) );
+
+function recurEvent(evt){
+	evt.target = document.body;
+	console.log(evt);
+}
+
+function recurrEvent(evt){
+	evt.target = document.body;
+	console.log(evt);
+}
+
+jDoms("body").addEvent("click", ".instant", recurEvent);
+
+//jDoms("body").removeEvent("change", ".instant", recurEvent);
+
+//jDoms("body").removeEvent("click", ".instant", recurEvent);
+//jDoms("body").removeEvent("click", ".instant", recurrEvent);
+
+jDoms("body").appendHtml( jDoms("div p", {"class":"instant", "style":"outline:2px dotted red"}, "<div style='padding:16px'>instant</div>").create() );
+
+
+//jDoms("body").addEvent("click", function(evt){ console.log( evt.target ); });
+
+//console.log( jDoms("body").doms("p.instant" ) );
+
+
+// **Manipulation
+
+//Directly manipulation
+console.log( "jDoms create:", jDoms("div", {"class":"instant"}, "instant").create());
+console.log( "jDoms createElement:", jDoms("div", {"class":"instant2"}, "instant2").createElement() );
+
+console.log( "jDoms getHtml:", jDoms("div", {"class":"instant2"}, "instant2").createElement().getHtml() );
+console.log( "jDoms setHtml:", jDoms("div.wheel_6").setHtml("HTML SET") );
+console.log( "jDoms html:", jDoms("#btn_first").html("HTML SET") );
+console.log( "jDoms html:", jDoms("#btn_second").html() );
+console.log( "jDoms html:", jDoms("#btn_first").html("NEW OUTER HTML SET", true) );
+console.log( "jDoms html:", jDoms("#btn_second").html( undefined, true) );
+console.log( "jDoms appendHtml:", jDoms(".btn_groups").appendHtml('<button class="new">MAMEDUL(apeend)</button>') );
+console.log( "jDoms prependHtml:", jDoms(".btn_groups").prependHtml('<button class="new">MAMEDUL(prepend)</button>') );
+
+console.log( "jDoms getText:", jDoms(".btn_groups").getText() );
+console.log( "jDoms getText:", jDoms("#btn_second").getText(true) );
+
+console.log( "jDoms setText:", jDoms("#btn_second").setText(true) );
+
+console.log( "jDoms text:", jDoms("#btn_forth").text("true") );
+
+console.log( "jDoms attributesList:", jDoms("#btn_forth").attributesList() );
+
+console.log( "jDoms setAttribute:", jDoms("#btn_forth").setAttribute("style", "color: red; border: 4px solid green;") );
+
+console.log( "jDoms setAttribute:", jDoms("#btn_forth").setAttribute( {"data-style":"color: red; border: 4px solid green;"} ) );
+
+console.log( "jDoms getAttribute:", jDoms("#btn_forth").getAttribute("style") );
+
+console.log( "jDoms getAttribute:", jDoms("#btn_forth").removeAttribute("style") );
+
+console.log( "jDoms attribute:", jDoms("#btn_forth").attribute( {"data-style2":"color: red; border: 4px solid green;"} ) );
+console.log( "jDoms attribute:", jDoms("#btn_forth").attribute( "data-style3", "color: red; border: 4px solid green;" ) );
+console.log( "jDoms attribute:", jDoms("#btn_forth").attribute( "data-style2" ) );
+console.log( "jDoms attribute:", jDoms("#btn_forth").removeAttribute( "data-style2" ) );
+
+console.log( "jDoms getAttribute:", jDoms("#btn_forth").setProperty("disabled", true) );
+console.log( "jDoms getAttribute:", jDoms("#btn_forth").getProperty("disabled") );
+console.log( "jDoms getAttribute:", jDoms("#btn_third").setProperty("disabled", true) );
+console.log( "jDoms getAttribute:", jDoms("#btn_third").removeProperty("disabled") );
+
+console.log( "jDoms setStyle:", jDoms("#btn_forth").setStyle("background", "#ff0daa") );
+console.log( "jDoms setStyle:", jDoms("#btn_forth").setStyle( {"color": "#fffdaa", "padding": "16px"}) );
+console.log( "jDoms getStyle:", jDoms("#btn_forth").getStyle("color") );
+console.log( "jDoms setStyle:", jDoms("#btn_third").setStyle("outline", "2px dotted yellow") );
+console.log( "jDoms setStyle:", jDoms("#btn_third").setStyle("outline", "2px dotted blue") );
+console.log( "jDoms removeStyle:", jDoms("#btn_third").removeStyle("outline") );
+console.log( "jDoms removeStyle:", jDoms("#btn_third").removeStyle("margin") );
+
+console.log( "jDoms style:", jDoms("#btn_forth").style( {"color": "#fffdaa", "height": "146px", "outline": "2px dotted yellow"}) );
+console.log( "jDoms style:", jDoms("#btn_forth").style( "color" ) );
+
+console.log( "jDoms setValue:", jDoms("input:first-child").setValue( "set value first" ) );
+console.log( "jDoms getValue:", jDoms("input:first-child").getValue() );
+
+
+console.log( "jDoms value:", jDoms("input:first-child").value( "set value" ) );
+console.log( "jDoms value:", jDoms("input:first-child").value() );
+
+console.log( "jDoms hide:", jDoms("#btn_forth").hide(true) );
+console.log( "jDoms show:", jDoms("#loading").show(true) );
+
+console.log( "jDoms classList:", jDoms("#btn_third").classList() );
+console.log( "jDoms addClass:", jDoms("#btn_third").addClass("build") );
+console.log( "jDoms removeClass:", jDoms("#btn_third").removeClass("action_add_btn") );
+
+console.log( "jDoms class:", jDoms("#btn_third").class() );
+
+
+console.log( "jDoms empty:", jDoms(".btn_groups").empty() );
+console.log( "jDoms empty:", jDoms("input:first-child").empty() );
+console.log( "jDoms body:", jDoms("body").normalize() );
+
+
+// pseudo manipulation
+console.log( "jDoms width:", jDoms("body").width() );
+console.log( "jDoms height:", jDoms("body").height() );
+
+console.log( "jDoms innerWidth:", jDoms("body").innerWidth() );
+console.log( "jDoms innerHeight:", jDoms("body").innerHeight() );
+
+console.log( "jDoms offsetWidth:", jDoms("body").offsetWidth() );
+console.log( "jDoms offsetHeight:", jDoms("body").offsetHeight() );
+
+console.log( "jDoms offsetLeft:", jDoms("body").offsetLeft() );
+console.log( "jDoms offsetTop:", jDoms("body").offsetTop() );
+
+console.log( "jDoms outerWidth:", jDoms("body").outerWidth() );
+console.log( "jDoms outerHeight:", jDoms("body").outerHeight() );
+
+console.log( "jDoms offset:", jDoms("body").offset() );
+
+jDoms.domReady( function(){ jDoms.delay( function(){ 
+	console.log( "jDoms scrollWidth:", jDoms("#Example2").scrollWidth() );
+	console.log( "jDoms scrollHeight:", $("#Example2").scrollHeight() );
+	//console.log( "jDoms scrollTo:", $("#Example2").scrollTo({top:100, left:200}) );
+	jDoms.delay( function(){ 
+		//console.log( "jDoms scrollBy:", $("#Example2").scrollBy({x:100, y:200}) );
+	}, 1100);
+
+}, 3000)});
+
+
+</script>
+
+</body>
+</html>
