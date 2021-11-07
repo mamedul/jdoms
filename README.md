@@ -75,13 +75,13 @@ npm save jdoms
 Or you can use CDN in your HTML file-
 
 ```html
-<script src="https:///cnd.pathname/src/jdoms-v1.0.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jdoms@1.0.0/src/jdoms-v1.0.0.min.js""></script>
 ```
 
 Or you can use locally downloaded file in your HTML file-
 
 ```html
-<script src="/pathname/src/jdoms-v1.0.0.min.js"></script>
+<script src="./pathname/src/jdoms-v1.0.0.min.js"></script>
 ```
 
 
