@@ -1,0 +1,35 @@
+{
+  "name": "jdoms",
+  "version": "1.0.0",
+  "description": "jDoms is an interactive Javascript library for DOM manipulations and most regulars functions related with DOM.",
+  "main": "./src/jdoms-v1.0.0.min.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "jdoms"
+  },
+  "keywords": [
+    "jDoms",
+    "jdoms",
+    "Javascript",
+    "DOMS",
+    "Library",
+    "Framework",
+    "mamedul",
+    "mamedul islam",
+    "Freelancer",
+    "Bangladesh"
+  ],
+  "author": "MAMEDUL ISLAM",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamedul/jdoms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mamedul/jdoms/issues"
+  },
+  "homepage": "https://mamedul.github.io/dev-projects/jdoms/"
+}
