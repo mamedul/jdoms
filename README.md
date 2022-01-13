@@ -117,4 +117,4 @@ jDoms javascript library is Licensed under the [MIT license](https://github.com/
 
 ## Contributing
 
-  The library is developed by [MAMEDUL ISLAM](https://mamedul.github.io). But here it's true that some codes are come from developer's forum ()like-StackOverflow).
+  The library is developed by [MAMEDUL ISLAM](https://mamedul.github.io). But here it's true that some codes are come from developer's forum(like-StackOverflow).
