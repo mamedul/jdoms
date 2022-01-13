@@ -4,7 +4,7 @@ An interactive Javascript library for DOM manipulations and most regulars functi
 
 ## Features
 
-* Major browsers compatible ( like* Chrome, Firefox, Opera, Safari, Micrsoft Edge, IE>=9 etc )
+* Major browsers compatible ( like* Chrome, Firefox, Opera, Safari, Microsoft Edge, IE>=9 etc )
 
 * NodeJS compatible
 
@@ -12,9 +12,9 @@ An interactive Javascript library for DOM manipulations and most regulars functi
 
 * Small sizes (less than 47KB)
 
-* Powerfull DOM selector
+* Powerful DOM selector
 
-* Easy and powerfull DOM manipulation functions
+* Easy and powerful DOM manipulation functions
 
 * Event Listener and Event Remover
 
@@ -22,21 +22,21 @@ An interactive Javascript library for DOM manipulations and most regulars functi
 
 * Ajax function with customizable and event catchers
 
-* URL Parser, Date Parser, HTML Parser,  JSON Parser,  XML Parser
+* URL Parser, Date Parser, HTML Parser, JSON Parser, XML Parser
 
 * Most regular functions
   
-  * Type Checker
+  * Type Checker ( String, Array, Int, Object, JSON, Empty )
   
-  * Document Ready
+  * Document Ready function
   
-  * Size(Length) Checker(All type of variables)
+  * Size(Length) Checker (All type of variables)
   
   * Trim (Object, Array, String in one function)
   
-  * Merge(Object and Array)
+  * Merge (Object and Array)
   
-  * Unique(Array, Sring and Number in one function)
+  * Unique (Array, String and Number in one function)
   
   * Encode String
   
@@ -52,7 +52,7 @@ An interactive Javascript library for DOM manipulations and most regulars functi
   
   * Set Cookie
   
-  * GetCookie
+  * Get Cookie
   
   * Remove Cookie
   
@@ -75,13 +75,13 @@ npm save jdoms
 Or you can use CDN in your HTML file-
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jdoms@1.0.0/src/jdoms-v1.0.0.min.js""></script>
+<script src="https://cdn.jsdelivr.net/npm/jdoms@1.0.1/src/jdoms-v1.0.1.min.js""></script>
 ```
 
 Or you can use locally downloaded file in your HTML file-
 
 ```html
-<script src="./pathname/src/jdoms-v1.0.0.min.js"></script>
+<script src="./pathname/src/jdoms-v1.0.1.min.js"></script>
 ```
 
 
@@ -105,16 +105,16 @@ jDoms("span:first-child").setHtml("myhtml");
 
 ## Documentation
 
-Check the [documentations here.]([Home · mamedul/jdoms Wiki · GitHub](https://github.com/mamedul/jdoms/wiki))
+Check the [documentations here.](https://github.com/mamedul/jdoms/wiki)
 
 
 
 ## License
 
-jDoms javascript library is Licensed under the [MIT license]([jdoms/LICENSE at main · mamedul/jdoms · GitHub](https://github.com/mamedul/jdoms/blob/master/LICENSE)).
+jDoms javascript library is Licensed under the [MIT license](https://github.com/mamedul/jdoms/blob/master/LICENSE).
 
 
 
 ## Contributing
 
-  The library is develpoed by [MAMEDUL ISLAM](https://mamedul.github.io). But here it's true that some codes are come from developer's forum ()like-StackOverflow).
+  The library is developed by [MAMEDUL ISLAM](https://mamedul.github.io). But here it's true that some codes are come from developer's forum ()like-StackOverflow).
