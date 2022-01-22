@@ -10,7 +10,7 @@
 * Project home:
 *   https://mamedul.gitlab.io/dev-projects/jdoms
 * 
-* Version: 1.0.0
+* Version: 1.0.1
 */
 (function (global, factory) {
 
@@ -42,7 +42,7 @@
 
 	'use strict';
 
-	var version = "1.0.0",
+	var version = "1.0.1",
 		developer = "MAMEDUL ISLAM";
 
 	/* Important polyfills */
@@ -99,6 +99,10 @@
 		return (typeof variable==="number");
 	};
 
+	var _isInt = function(variable){
+		return (typeof variable==="number" && parseInt(variable)===variable );
+	};
+
 	var _isFinite = function(variable){
 		return isFinite(variable);
 	};
@@ -120,7 +124,7 @@
 	};
 	
 	var _isEmpty = function(variable){
-		if( typeof variable==='undefined'||variable===""||variable===0||variable===[]||variable==={}||variable===false||variable===null||isNaN(variable)||variable===function(){}){ return true; }
+		if( typeof variable==='undefined'||variable===""||variable===0||variable===[]||variable==={}||variable===false||variable===null||variable==NaN){ return true; }
 		return false;
 	};
 
@@ -3327,6 +3331,8 @@
 	jDoms.isString = function(variable){ return _isString(variable); };
 
 	jDoms.isNumber = function(variable){ return _isNumber(variable); };
+
+	jDoms.isInt = function(variable){ return _isInt(variable); };
 
 	jDoms.isFinite = function(variable){ return _isFinite(variable); };
 
