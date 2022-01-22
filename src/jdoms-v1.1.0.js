@@ -3626,6 +3626,8 @@
 	jDoms.docReady = jDoms.domReady;
 	jDoms.ready = jDoms.domReady;
 
+	window.jDoms = jDoms;
+
 	return jDoms;
 
 })));

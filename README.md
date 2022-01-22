@@ -10,7 +10,7 @@ An interactive Javascript library for DOM manipulations and most regulars functi
 
 * Easy to use and short coding
 
-* Small sizes (less than 47KB)
+* Small sizes (less than 49KB)
 
 * Powerful DOM selector
 
@@ -67,6 +67,12 @@ jDoms is available on [npmjs](https://www.npmjs.com/package/jdoms) (using semant
 ```
 npm install jdoms
 ```
+or 
+
+```
+npm i jdoms
+```
+or
 
 ```
 npm save jdoms
@@ -75,13 +81,18 @@ npm save jdoms
 Or you can use CDN in your HTML file-
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jdoms@1.0.1/src/jdoms-v1.0.1.min.js""></script>
+<script src="https://cdn.jsdelivr.net/npm/jdoms@1.1.0/src/jdoms-v1.1.0.min.js""></script>
+```
+or
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/jdoms@1.1.0/src/jdoms-v1.1.0.min.js""></script>
 ```
 
 Or you can use locally downloaded file in your HTML file-
 
 ```html
-<script src="./pathname/src/jdoms-v1.0.1.min.js"></script>
+<script src="./pathname/src/jdoms-v1.1.0.min.js"></script>
 ```
 
 
@@ -94,6 +105,12 @@ Then, you can use, like-
 //select all 'div' tags and add class 'active'
 jDoms("div").addClass("active");
 
+//select all 'div' tags and add 'click' type event with handler function
+jDoms("div").addEvent("click", function(evt){
+  //alert('event triggered');
+  jDoms(evt.target).style('background-color', 'red');
+});
+
 //select first 'span' tags and add set HTML 'myhtml'
 //jDoms("span").domIndex(0).setHtml("myhtml");
 jDoms("span:first-child").setHtml("myhtml");
@@ -101,6 +118,14 @@ jDoms("span:first-child").setHtml("myhtml");
 </script>
 ```
 
+
+To work with Node(for testing purpose), it requires [jsdom](https://github.com/jsdom/jsdom).
+
+```javascript
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const jDoms = require( "jdoms" )( window );
+```
 
 
 ## Documentation
@@ -117,4 +142,4 @@ jDoms javascript library is Licensed under the [MIT license](https://github.com/
 
 ## Contributing
 
-  The library is developed by [MAMEDUL ISLAM](https://mamedul.github.io). But here it's true that some codes are come from developer's forum(like-StackOverflow).
+The library is developed by [MAMEDUL ISLAM](https://mamedul.github.io).
