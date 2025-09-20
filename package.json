@@ -1,14 +1,24 @@
 {
   "name": "jdoms",
-  "version": "1.1.0",
-  "description": "jDoms is an interactive Javascript library for DOM manipulations and most regulars functions related with DOM.",
-  "main": "./src/jdoms-v1.1.0.min.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
-  },
+  "version": "1.1.1",
+  "description": "jDoms is a fast, powerful, and zero-dependency JavaScript library for modern DOM manipulation, traversal, event handling, and more",
+  "files": [
+    "./src",
+    "./browser-test.html",
+    "./LICENSE",
+    "./CHANGELOG.md",
+    "./README.md",
+    "./CODE_OF_CONDUCT.md",
+    "./CONTRIBUTING.md"
+  ],
+  "main": "./src/jdoms-latest.min.js",
+  "browser": "./dist/wp-hook.umd.js",
   "scripts": {
-    "test": "jdoms"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "directories": {
+    "doc": "./",
+    "example": "./examples"
   },
   "keywords": [
     "jDoms",
@@ -38,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/mamedul/jdoms/issues"
   },
-  "homepage": "https://mamedul.github.io/dev-projects/jdoms/"
+  "homepage": "https://mamedul.github.io/jdoms/"
 }

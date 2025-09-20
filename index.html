@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>jDoms - Lightweight JavaScript DOM Manipulation Library</title>
+  <meta name="description" content="jDoms is a fast, lightweight, and modern JavaScript library for powerful DOM manipulation, event handling, and AJAX requests. An efficient alternative to jQuery for modern web development.">
+  <meta name="keywords" content="jDoms, javascript, dom, dom manipulation, jquery alternative, lightweight js library, frontend, web development, ajax, event handling">
+  <meta name="author" content="MAMEDUL ISLAM">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mamedul.github.io/jdoms/">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Open Graph / Facebook Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mamedul.github.io/jdoms/">
+  <meta property="og:title" content="jDoms - Lightweight JavaScript DOM Manipulation Library">
+  <meta property="og:description" content="A fast, lightweight, and modern JavaScript library for powerful DOM manipulation, event handling, and AJAX. Perfect for developers looking for an efficient jQuery alternative.">
+  <meta property="og:image" content="https://mamedul.github.io/jdoms/jdoms-og.png">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://mamedul.github.io/jdoms/">
+  <meta name="twitter:title" content="jDoms - Lightweight JavaScript DOM Manipulation Library">
+  <meta name="twitter:description" content="A fast, lightweight, and modern JavaScript library for powerful DOM manipulation, event handling, and AJAX. Perfect for developers looking for an efficient jQuery alternative.">
+  <meta name="twitter:image" content="https://mamedul.github.io/jdoms/jdoms-og.png">
+
+  <!-- Docsify Theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" title="vue">
+
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "jDoms",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Person",
+      "name": "MAMEDUL ISLAM"
+    },
+    "description": "jDoms is a powerful, lightweight JavaScript library for modern DOM manipulation, event handling, and AJAX requests.",
+    "softwareVersion": "1.1.1",
+    "url": "https://mamedul.github.io/jdoms/"
+  }
+  </script>
+
+  <style>
+    :root {
+      --theme-color: #42b983;
+    }
+    .cover-main .cover-main-description {
+        max-width: 600px;
+        margin: 1.5rem auto;
+    }
+  </style>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-92XK2C4QE4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-92XK2C4QE4');
+  </script>
+
+</head>
+<body>
+
+  <!-- Docsify App -->
+  <div id="app"></div>
+
+  <!-- Fallback content for SEO and non-JS users -->
+  <noscript>
+    <section>
+      <h1>jDoms - Lightweight JavaScript DOM Manipulation Library</h1>
+      <p>A fast, lightweight, and modern JavaScript library for powerful DOM manipulation, event handling, and AJAX requests. An efficient alternative to jQuery for modern web development.</p>
+      <p>To view the full documentation, please enable JavaScript or visit our <a href="https://github.com/mamedul/jdoms" rel="noopener">GitHub repository</a>.</p>
+    </section>
+  </noscript>
+
+  <!-- Docsify Configuration -->
+  <script>
+    window.$docsify = {
+      name: 'jDoms',
+      repo: 'mamedul/jdoms',
+      logo: './icons/favicon-32x32.png',
+      homepage: 'README.md',
+      loadSidebar: false,
+      subMaxLevel: 3,
+      coverpage: true,
+      auto2top: true,
+      search: 'auto',
+      plugins: [
+        function(hook) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span>&copy; ' + new Date().getFullYear() + ' <a href="https://github.com/mamedul" target="_blank" rel="noopener">MAMEDUL ISLAM</a>. All Rights Reserved.</span>',
+            '<span>Published with <a href="https://docsify.js.org" target="_blank" rel="noopener">docsify</a></span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+      ]
+    }
+  </script>
+
+  <!-- Docsify Core -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+
+  <!-- Docsify Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jDoms Test Page</title>
+</head>
+<body>
+    <h1 id="main-title" class="title header" data-test="main-header">jDoms Test Suite</h1>
+    <div id="container">
+        <p class="para">Please open console developer tools (F12) to view results.</p>
+        <ul id="list-1">
+            <li class="item item-1">Item 1</li>
+            <li class="item item-2" style="color: blue;">Item 2</li>
+            <li class="item item-3" data-id="3">Item 3</li>
+        </ul>
+        <div id="event-box">
+            <button class="btn">Button 1</button>
+            <button class="btn">Button 2</button>
+        </div>
+        <form id="test-form">
+            <input type="text" id="text-input" name="username" value="initial">
+            <input type="checkbox" id="checkbox-input" name="confirm" checked>
+        </form>
+    </div>
+    <div id="empty-div"></div>
+    <div id="clone-source"><p><span>Clone me</span></p></div>
+	
+	<script src="./src/jdoms-latest.js"></script>
+	<!--<script src="./src/jdoms-v1.1.0.js"></script>-->
+	<!--<script src="./src/jdoms-v1.0.0.js"></script>-->
+	<script>
+		const assert = {
+			strictEqual(actual, expected, message) {
+				if (actual !== expected) {
+				throw new Error(message || `Assertion failed: expected ${expected}, but got ${actual}`);
+				} else {
+				console.log("✅ Assert passed:", message || `${actual} === ${expected}`);
+				}
+			},
+
+			notStrictEqual(actual, expected, message) {
+				if (actual === expected) {
+				throw new Error(message || `Assertion failed: value should not be ${actual}`);
+				} else {
+				console.log("✅ Assert passed:", message || `${actual} !== ${expected}`);
+				}
+			},
+
+			deepStrictEqual(actual, expected, message) {
+				const isObject = (obj) => obj !== null && typeof obj === "object";
+
+				function deepEqual(a, b) {
+				if (a === b) return true;
+
+				// Handle arrays
+				if (Array.isArray(a) && Array.isArray(b)) {
+					if (a.length !== b.length) return false;
+					return a.every((val, i) => deepEqual(val, b[i]));
+				}
+
+				// Handle objects
+				if (isObject(a) && isObject(b)) {
+					const keysA = Object.keys(a);
+					const keysB = Object.keys(b);
+					if (keysA.length !== keysB.length) return false;
+					return keysA.every((key) => deepEqual(a[key], b[key]));
+				}
+
+				return false;
+				}
+
+				if (!deepEqual(actual, expected)) {
+				throw new Error(
+					message ||
+					`Assertion failed: expected ${JSON.stringify(expected)}, but got ${JSON.stringify(actual)}`
+				);
+				} else {
+				console.log("✅ Assert passed:", message || "Objects are deeply equal");
+				}
+			}
+		};
+	</script>
+	<script>
+		// 2. Simple Test Runner
+		let passCount = 0;
+		let failCount = 0;
+		const tests = [];
+
+		function test(description, fn) {
+			tests.push({ description, fn });
+		}
+
+		function run() {
+			tests.forEach((t, i) => {
+				try {
+					t.fn();
+					console.log(`\x1b[32m✓ PASS(${i+1}):\x1b[0m ${t.description}`);
+					passCount++;
+				} catch (e) {
+					console.error(`\x1b[31m✗ FAIL(${i+1}):\x1b[0m ${t.description}`);
+					console.error(e.message);
+					failCount++;
+				}
+			});
+
+			console.log('================================');
+			console.log(`\nTest Summary:`);
+			console.log(`\x1b[32m${passCount} passing\x1b[0m`);
+			console.log(`\x1b[31m${failCount} failing\x1b[0m`);
+			
+			// Exit with a non-zero code if any tests failed
+			if (failCount > 0) {
+				process.exit(1);
+			}
+		}
+
+
+		// 3. Define the Tests
+
+		// == Core & Selectors ==
+		test('Core: Select element by ID', () => {
+			const title = jDoms('#main-title');
+			assert.strictEqual(title.length, 1, 'Should select one element');
+			assert.strictEqual(title.index(0).tagName, 'H1', 'Selected element should be an H1 tag');
+		});
+
+		test('Core: Select elements by class', () => {
+			const items = jDoms('.item');
+			assert.strictEqual(items.length, 3, 'Should select three elements');
+		});
+
+		test('Core: Select elements by tag name', () => {
+			const paragraphs = jDoms('p');
+			assert.strictEqual(paragraphs.length > 0, true, 'Should select one paragraph');
+		});
+
+		test('Core: Create a new element', () => {
+			const newDiv = jDoms('div', { id: 'new-div', class: 'box' }).create();
+			assert.strictEqual(newDiv.length, 1);
+			assert.strictEqual(newDiv.attr('id'), 'new-div');
+			assert.strictEqual(newDiv.hasClass('box'), true);
+		});
+
+		// == DOM Traversal ==
+		test('Traversal: .find() should find descendants', () => {
+			const listItems = jDoms('#container').find('.item');
+			assert.strictEqual(listItems.length, 3);
+		});
+
+		test('Traversal: .parent() should get the parent element', () => {
+			const list = jDoms('.item-1').parent();
+			assert.strictEqual(list.attr('id'), 'list-1');
+		});
+
+		test('Traversal: .children() should get direct children', () => {
+			const listChildren = jDoms('#list-1').children();
+			assert.strictEqual(listChildren.length, 3);
+		});
+
+		test('Traversal: .closest() should find the nearest ancestor', () => {
+			const container = jDoms('.item-2').closest('#container');
+			assert.strictEqual(container.length, 1);
+			assert.strictEqual(container.attr('id'), 'container');
+		});
+
+		test('Traversal: .next() and .previous() should navigate siblings', () => {
+			const item2 = jDoms('.item-1').next();
+			assert.strictEqual(item2.hasClass('item-2'), true);
+			const item1 = item2.previous();
+			assert.strictEqual(item1.hasClass('item-1'), true);
+		});
+
+		test('Traversal: .first() and .last() should filter the set', () => {
+			const firstItem = jDoms('.item').first();
+			assert.strictEqual(firstItem.hasClass('item-1'), true);
+			const lastItem = jDoms('.item').last();
+			assert.strictEqual(lastItem.hasClass('item-3'), true);
+		});
+
+		// == DOM Manipulation ==
+		test('Manipulation: .html() should get and set HTML content', () => {
+			const p = jDoms('.para');
+			const originalHtml = p.html();
+			assert.strictEqual(originalHtml, 'This is the first paragraph.');
+			p.html('<strong>New content</strong>');
+			assert.strictEqual(p.html(), '<strong>New content</strong>');
+			p.html(originalHtml); // Reset for other tests
+		});
+
+		test('Manipulation: .text() should get and set text content', () => {
+			jDoms('#main-title').text('New Title');
+			assert.strictEqual(jDoms('#main-title').text(), 'New Title');
+			jDoms('#main-title').text('jDoms Test Suite'); // Reset
+		});
+
+		test('Manipulation: .append() and .prepend() should add content', () => {
+			jDoms('#list-1').append('<li id="new-last">Last</li>');
+			assert.strictEqual(jDoms('#list-1').children().length, 4);
+			assert.strictEqual(jDoms('#list-1').children().last().attr('id'), 'new-last');
+
+			jDoms('#list-1').prepend('<li id="new-first">First</li>');
+			assert.strictEqual(jDoms('#list-1').children().length, 5);
+			assert.strictEqual(jDoms('#list-1').children().first().attr('id'), 'new-first');
+		});
+
+		test('Manipulation: .remove() should remove an element', () => {
+			jDoms('#new-first').remove();
+			jDoms('#new-last').remove();
+			assert.strictEqual(jDoms('#list-1').children().length, 3);
+		});
+
+		test('Manipulation: .clone() should create a copy of an element', () => {
+			const clone = jDoms('#clone-source').clone();
+			clone.attr('id', 'clone-dest');
+			jDoms('body').append(clone);
+			assert.strictEqual(jDoms('#clone-dest').length, 1);
+			assert.strictEqual(jDoms('#clone-dest').find('p').length, 1);
+		});
+
+		// == Attributes, Properties & Values ==
+		test('Attributes: .attr() should get and set attributes', () => {
+			const title = jDoms('#main-title');
+			assert.strictEqual(title.attr('data-test'), 'main-header');
+			title.attr('data-new', 'added');
+			assert.strictEqual(title.attr('data-new'), 'added');
+		});
+
+		test('Attributes: .removeAttr() should remove an attribute', () => {
+			jDoms('#main-title').removeAttr('data-new');
+			assert.strictEqual(jDoms('#main-title').attr('data-new'), null);
+		});
+
+		test('Properties: .prop() should get and set properties', () => {
+			const checkbox = jDoms('#checkbox-input');
+			assert.strictEqual(checkbox.prop('checked'), true);
+			checkbox.prop('checked', false);
+			assert.strictEqual(checkbox.prop('checked'), false);
+		});
+
+		test('Values: .val() should get and set input values', () => {
+			const input = jDoms('#text-input');
+			assert.strictEqual(input.val(), 'initial');
+			input.val('new-value');
+			assert.strictEqual(input.val(), 'new-value');
+		});
+
+		// == CSS & Styling ==
+		test('CSS: .css() should get and set styles', () => {
+			const item2 = jDoms('.item-2');
+			assert.strictEqual(item2.css('color'), 'blue');
+			item2.css('font-weight', 'bold');
+			assert.strictEqual(item2.css('font-weight'), 'bold');
+		});
+
+		test('CSS: .addClass(), .removeClass(), .hasClass()', () => {
+			const title = jDoms('#main-title');
+			assert.strictEqual(title.hasClass('header'), true);
+			title.addClass('extra-class');
+			assert.strictEqual(title.hasClass('extra-class'), true);
+			title.removeClass('extra-class');
+			assert.strictEqual(title.hasClass('extra-class'), false);
+		});
+
+		test('CSS: .hide() and .show() should toggle display', () => {
+			const p = jDoms('.para');
+			p.hide();
+			assert.strictEqual(p.css('display'), 'none');
+			p.show();
+			assert.strictEqual(p.css('display'), 'block');
+		});
+
+		// == Event Handling ==
+		test('Events: .on() and .trigger() for direct events', () => {
+			let clicked = false;
+			const btn = jDoms('.btn').first();
+			btn.on('click', () => {
+				clicked = true;
+			});
+			btn.trigger('click');
+			assert.strictEqual(clicked, true, 'Click event handler should have been called');
+		});
+
+		test('Events: .on() and .trigger() for delegated events', () => {
+			let delegatedClickCount = 0;
+			const eventBox = jDoms('#event-box');
+			eventBox.on('click', '.btn', function() {
+				delegatedClickCount++;
+			});
+
+			// Trigger on a matching child
+			jDoms('#event-box .btn').first().trigger('click');
+			assert.strictEqual(delegatedClickCount, 1, 'Delegated handler should fire once');
+
+			// Add a new button and trigger click on it
+			eventBox.append('<button class="btn" id="new-btn">New</button>');
+			jDoms('#new-btn').trigger('click');
+			assert.strictEqual(delegatedClickCount, 2, 'Delegated handler should fire on dynamically added element');
+		});
+
+		test('Events: .off() should remove an event handler', () => {
+			let clickCount = 0;
+			const handler = () => { clickCount++; };
+			const btn = jDoms('.btn').first();
+			
+			btn.on('click', handler);
+			btn.trigger('click');
+			assert.strictEqual(clickCount, 1, 'Handler should be attached and fire');
+			
+			btn.off('click', handler);
+			btn.trigger('click');
+			assert.strictEqual(clickCount, 1, 'Handler should be detached and not fire again');
+		});
+
+		// == Static Utilities ==
+		test('Utilities: jDoms.ready() should execute a callback', (done) => {
+			let ready = false;
+			jDoms.ready(() => {
+				ready = true;
+				assert.strictEqual(ready, true);
+			});
+			// In JSDOM, ready fires synchronously if the doc is already loaded
+		});
+
+		test('Utilities: jDoms.isString() should correctly identify strings', () => {
+			assert.strictEqual(jDoms.isString('hello'), true);
+			assert.strictEqual(jDoms.isString(123), false);
+		});
+
+		test('Utilities: jDoms.isArray() should correctly identify arrays', () => {
+			assert.strictEqual(jDoms.isArray([1, 2]), true);
+			assert.strictEqual(jDoms.isArray({}), false);
+		});
+
+		test('Utilities: jDoms.jsonParse() should safely parse JSON', () => {
+			const obj = jDoms.jsonParse('{"a": 1}');
+			assert.deepStrictEqual(obj, { a: 1 });
+			const invalid = jDoms.jsonParse('{a: 1}');
+			assert.deepStrictEqual(invalid, {});
+		});
+
+		test('Utilities: jDoms.unique() should remove duplicates from an array', () => {
+			const arr = [1, 2, 2, 3, 1, 4];
+			const uniqueArr = jDoms.unique(arr);
+			assert.deepStrictEqual(uniqueArr, [1, 2, 3, 4]);
+		});
+
+		// 4. Run the tests
+		run();
+	</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jDoms.js - Advanced Examples</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            background-color: #fdfdff;
+        }
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            color: white;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background-color: #42b983; }
+        .btn-primary:hover { background-color: #36a473; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        .btn-info { background-color: #17a2b8; }
+        .btn-info:hover { background-color: #138496; }
+        .btn-warning { background-color: #ffc107; color: #212529; }
+        .btn-warning:hover { background-color: #e0a800; }
+
+        .output-box {
+            background-color: #f1f3f5;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 50px;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        #selector-list li {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        #selector-list li.highlight {
+            background-color: #d1fae5;
+            border-color: #42b983;
+            transform: translateX(10px);
+        }
+        #clone-source {
+            border: 2px dashed #42b983;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+
+    <script src="../src/jdoms-latest.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold mb-2">jDoms.js Advanced Demos</h1>
+            <p class="text-xl text-gray-600">Exploring more features of the jDoms library.</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- Card 9: Dimensions & Positioning -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">9. Dimensions & Position</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Get dimensional and positional information of an element.</p>
+                    <div id="dimension-box" class="h-48 bg-gray-200 rounded-lg p-4 border overflow-auto relative">
+                        <div style="width: 400px; height: 400px;">
+                            <div id="dimension-inner-box" class="w-24 h-24 bg-primary absolute top-10 left-10 flex items-center justify-center text-white">Target</div>
+                        </div>
+                    </div>
+                     <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="getDimensions" class="btn btn-primary text-sm">Get Dimensions</button>
+                        <button id="getOffset" class="btn btn-secondary text-sm">Get Offset</button>
+                        <button id="getScroll" class="btn btn-info text-sm">Get Scroll</button>
+                    </div>
+                    <div id="dimension-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <!-- Card 10: Attributes & Data -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">10. Attributes & Data-*</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Read, write, and remove attributes, especially `data-*` attributes.</p>
+                    <div id="data-element" class="p-4 bg-gray-200 rounded-lg" data-id="12345" data-role="user-profile">I have data attributes!</div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="readData" class="btn btn-primary text-sm">Read Data</button>
+                        <button id="writeData" class="btn btn-secondary text-sm">Write Data</button>
+                        <button id="removeData" class="btn btn-danger text-sm">Remove Data</button>
+                    </div>
+                    <div id="data-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <!-- Card 11: Method Chaining -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">11. Method Chaining</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Perform multiple actions in a single, fluent line of code.</p>
+                    <button id="runChain" class="btn btn-primary">Run Chain</button>
+                    <div id="chain-container" class="output-box">
+                        <p>First paragraph.</p>
+                        <p>Second paragraph.</p>
+                        <p>Third paragraph (target).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12: Advanced Selectors -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">12. Advanced Selectors</h2></div>
+                <div class="card-body">
+                     <p class="mb-4">Use pseudo-selectors to target specific elements in a list.</p>
+                    <ul id="selector-list" class="list-none p-0">
+                        <li>Item 1</li> <li>Item 2</li> <li>Item 3</li> <li>Item 4</li> <li>Item 5</li>
+                    </ul>
+                     <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="selectOdd" class="btn btn-info text-sm">Select Odd</button>
+                        <button id="selectFirstLast" class="btn btn-secondary text-sm">Select First/Last</button>
+                        <button id="resetSelection" class="btn btn-danger text-sm">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 13: Cookie Management -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">13. Cookie Management</h2></div>
+                <div class="card-body">
+                     <p class="mb-4">Use `jDoms` utilities to manage browser cookies.</p>
+                     <div class="space-y-2">
+                        <input type="text" id="cookieName" placeholder="Cookie Name" class="w-full p-2 border rounded-md" value="jDomsCookie">
+                        <input type="text" id="cookieValue" placeholder="Cookie Value" class="w-full p-2 border rounded-md" value="Hello World!">
+                     </div>
+                     <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="setCookie" class="btn btn-primary text-sm">Set Cookie (1hr)</button>
+                        <button id="getCookie" class="btn btn-secondary text-sm">Get Cookie</button>
+                        <button id="removeCookie" class="btn btn-danger text-sm">Remove Cookie</button>
+                    </div>
+                    <div id="cookie-output" class="output-box"></div>
+                </div>
+            </div>
+            
+            <!-- Card 14: Cloning Elements -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">14. Cloning Elements</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Create deep copies of DOM elements with `.clone()`.</p>
+                    <div id="clone-source">
+                        <p class="font-bold">Clone Me</p>
+                        <button class="btn btn-warning text-sm mt-2">I am a button</button>
+                    </div>
+                    <button id="runClone" class="btn btn-primary mt-4">Clone It!</button>
+                    <div id="clone-target" class="output-box"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    jDoms.ready(function() {
+
+        // --- Example 9: Dimensions & Positioning ---
+        const dimBox = jDoms('#dimension-box');
+        const innerBox = jDoms('#dimension-inner-box');
+        const dimOutput = jDoms('#dimension-output');
+        
+        jDoms('#getDimensions').on('click', () => {
+            const w = innerBox.width();
+            const h = innerBox.height();
+            const iw = innerBox.innerWidth();
+            const ow = innerBox.outerWidth();
+            dimOutput.html(`width(): ${w} <br> height(): ${h} <br> innerWidth(): ${iw} <br> outerWidth(): ${ow}`);
+        });
+
+        jDoms('#getOffset').on('click', () => {
+            const offset = innerBox.offset();
+            dimOutput.text(`offset().top: ${offset.top.toFixed(2)}, offset().left: ${offset.left.toFixed(2)}`);
+        });
+        
+        jDoms('#getScroll').on('click', () => {
+            dimBox.scrollTo(20, 20); // scroll a bit to show a value
+            const top = dimBox.scrollTop();
+            const left = dimBox.scrollLeft();
+            dimOutput.text(`scrollTop(): ${top}, scrollLeft(): ${left}`);
+        });
+
+        // --- Example 10: Attributes & Data ---
+        const dataEl = jDoms('#data-element');
+        const dataOutput = jDoms('#data-output');
+        jDoms('#readData').on('click', () => {
+            const id = dataEl.attr('data-id');
+            const role = dataEl.attr('data-role');
+            dataOutput.text(`data-id: ${id}, data-role: ${role}`);
+        });
+        jDoms('#writeData').on('click', () => {
+            dataEl.attr('data-role', 'admin-panel');
+            dataEl.attr('data-status', 'active');
+            dataOutput.text('Set data-role to "admin-panel" and added data-status.');
+        });
+        jDoms('#removeData').on('click', () => {
+            dataEl.removeAttr('data-role');
+            dataOutput.text('Removed data-role attribute.');
+        });
+
+        // --- Example 11: Method Chaining ---
+        jDoms('#runChain').on('click', function() {
+            jDoms('#chain-container')
+                .child('p') // Get all <p> children
+                .last() // Select the last one
+                .style({ 'background-color': '#42b983', 'color': 'white', 'padding': '1rem', 'border-radius': '6px' })
+                .text('This paragraph was modified by a chain!')
+                .append('<strong> And this was appended!</strong>');
+        });
+
+        // --- Example 12: Advanced Selectors ---
+        const listItems = jDoms('#selector-list li');
+        jDoms('#selectOdd').on('click', () => {
+            listItems.removeClass('highlight');
+            listItems.match(':nth-child(odd)').addClass('highlight');
+        });
+        jDoms('#selectFirstLast').on('click', () => {
+            listItems.removeClass('highlight');
+            listItems.first().addClass('highlight');
+            listItems.last().addClass('highlight');
+        });
+        jDoms('#resetSelection').on('click', () => listItems.removeClass('highlight'));
+        
+        // --- Example 13: Cookie Management ---
+        const cookieOut = jDoms('#cookie-output');
+        jDoms('#setCookie').on('click', () => {
+            const name = jDoms('#cookieName').val();
+            const value = jDoms('#cookieValue').val();
+            const expiry = 60 * 60 * 1000; // 1 hour in ms
+            const success = jDoms.setCookie(name, value, expiry);
+            cookieOut.text(success ? `Cookie '${name}' set!` : 'Failed to set cookie.');
+        });
+        jDoms('#getCookie').on('click', () => {
+            const name = jDoms('#cookieName').val();
+            const value = jDoms.getCookie(name);
+            cookieOut.text(value ? `Cookie '${name}' value: ${value}` : `Cookie '${name}' not found.`);
+        });
+        jDoms('#removeCookie').on('click', () => {
+            const name = jDoms('#cookieName').val();
+            jDoms.removeCookie(name);
+            cookieOut.text(`Cookie '${name}' removed.`);
+        });
+
+        // --- Example 14: Cloning Elements ---
+        jDoms('#runClone').on('click', () => {
+            const clonedEl = jDoms('#clone-source').clone(true); // true for deep clone
+            jDoms('#clone-target').append('<hr class="my-4">').append(clonedEl);
+        });
+
+    });
+    </script>
+</body>
+</html>

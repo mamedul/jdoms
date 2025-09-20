@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jDoms.js - Expert Examples</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            background-color: #fdfdff;
+        }
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            color: white;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background-color: #42b983; }
+        .btn-primary:hover { background-color: #36a473; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        .btn-info { background-color: #17a2b8; }
+        .btn-info:hover { background-color: #138496; }
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-warning { background-color: #ffc107; color: #212529; }
+        .btn-warning:hover { background-color: #e0a800; }
+
+        .output-box {
+            background-color: #f1f3f5;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 50px;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .target-box {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px dashed #6c757d;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .highlight {
+            background-color: #d1fae5;
+            border-color: #42b983 !important;
+        }
+    </style>
+
+    <script src="../src/jdoms-latest.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold mb-2">jDoms.js Expert Demos</h1>
+            <p class="text-xl text-gray-600">Even more features of the jDoms library.</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- Card 15: Filtering with .not() and .is() -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">15. Filtering with `.not()` & `.is()`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Select elements and then filter the selection.</p>
+                    <div id="filter-list" class="space-y-2">
+                        <div class="p-2 border rounded-md item">Item 1</div>
+                        <div class="p-2 border rounded-md item special">Item 2 (Special)</div>
+                        <div class="p-2 border rounded-md item">Item 3</div>
+                        <div class="p-2 border rounded-md item">Item 4</div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="highlightNotSpecial" class="btn btn-primary text-sm">Highlight non-special</button>
+                        <button id="checkIsSpecial" class="btn btn-secondary text-sm">Check if Item 2 is special</button>
+                    </div>
+                    <div id="filter-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <!-- Card 16: Sibling Insertion -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">16. `.before()` & `.after()`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Insert new elements as siblings to a target.</p>
+                    <div id="insertion-container" class="space-y-2">
+                         <div class="target-box bg-gray-200">Target Element</div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="addBefore" class="btn btn-info text-sm">Add Before</button>
+                        <button id="addAfter" class="btn btn-success text-sm">Add After</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 17: .empty() vs .remove() -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">17. `.empty()` vs `.remove()`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Understand the difference between emptying content and removing the element itself.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div id="box-to-empty" class="target-box bg-blue-100"><p>Content A</p><p>Content B</p></div>
+                        <div id="box-to-remove" class="target-box bg-red-100"><p>Content C</p><p>Content D</p></div>
+                    </div>
+                     <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="runEmpty" class="btn btn-warning text-sm">Empty First Box</button>
+                        <button id="runRemove" class="btn btn-danger text-sm">Remove Second Box</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 18: Async with jDoms.promise -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">18. Async with `jDoms.promise`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Simulate an async operation that updates the UI.</p>
+                    <button id="runPromise" class="btn btn-primary">Run Simulation</button>
+                    <div id="promise-output" class="output-box">Click to start...</div>
+                </div>
+            </div>
+            
+            <!-- Card 19: Form Serialization -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">19. Form Serialization</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Serialize form data into a query string with `.buildQuery()`.</p>
+                    <form id="serialize-form" class="space-y-4">
+                        <input type="text" name="username" value="jDomsUser" class="w-full p-2 border rounded-md">
+                        <input type="email" name="email" value="test@example.com" class="w-full p-2 border rounded-md">
+                        <input type="checkbox" name="newsletter" value="true" checked> Subscribe
+                    </form>
+                    <button id="runSerialize" class="btn btn-primary mt-4">Serialize Form</button>
+                    <div id="serialize-output" class="output-box"></div>
+                </div>
+            </div>
+
+            <!-- Card 20: Event Triggering -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">20. Event Triggering with `.trigger()`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Programmatically trigger an event on another element.</p>
+                    <button id="triggerButton" class="btn btn-info">Trigger the Other Button</button>
+                    <button id="targetButton" class="btn btn-secondary">I was triggered!</button>
+                    <div id="trigger-output" class="output-box"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    jDoms.ready(function() {
+
+        // --- Example 15: Filtering with .not() and .is() ---
+        const filterItems = jDoms('#filter-list .item');
+        const filterOutput = jDoms('#filter-output');
+        
+        jDoms('#highlightNotSpecial').on('click', () => {
+            filterItems.removeClass('highlight');
+            filterItems.not('.special').addClass('highlight');
+            filterOutput.text(`${filterItems.not('.special').length} items highlighted.`);
+        });
+
+        jDoms('#checkIsSpecial').on('click', () => {
+            const item2 = jDoms('#filter-list .item').domIndex(1); // Get second item
+            if (item2.is('.special')) {
+                filterOutput.text('Item 2 has the class "special".');
+            } else {
+                filterOutput.text('Item 2 does not have the class "special".');
+            }
+        });
+
+        // --- Example 16: Sibling Insertion ---
+        const insertionTarget = jDoms('#insertion-container .target-box');
+        let beforeCount = 0;
+        let afterCount = 0;
+
+        jDoms('#addBefore').on('click', () => {
+            beforeCount++;
+            insertionTarget.before(`<div class="p-2 bg-blue-100 rounded-md text-sm">Before ${beforeCount}</div>`);
+        });
+
+        jDoms('#addAfter').on('click', () => {
+            afterCount++;
+            insertionTarget.after(`<div class="p-2 bg-green-100 rounded-md text-sm">After ${afterCount}</div>`);
+        });
+
+        // --- Example 17: .empty() vs .remove() ---
+        jDoms('#runEmpty').on('click', () => {
+            jDoms('#box-to-empty').empty();
+            // The box remains, but its content is gone.
+        });
+        jDoms('#runRemove').on('click', () => {
+            jDoms('#box-to-remove').remove();
+            // The entire box is removed from the DOM.
+        });
+
+        // --- Example 18: Async with jDoms.promise ---
+        const promiseOutput = jDoms('#promise-output');
+        jDoms('#runPromise').on('click', () => {
+            promiseOutput.html('<div class="text-blue-600">Processing...</div>');
+            
+            const simulatedTask = new jDoms.promise((resolve, reject) => {
+                const isSuccess = Math.random() > 0.3; // 70% chance of success
+                setTimeout(() => {
+                    if (isSuccess) {
+                        resolve("Operation completed successfully!");
+                    } else {
+                        reject("Operation failed.");
+                    }
+                }, 1500);
+            });
+            
+            simulatedTask.then(
+                (result) => { promiseOutput.html(`<div class="text-green-600">${result}</div>`); },
+                (error) => { promiseOutput.html(`<div class="text-red-600">${error}</div>`); }
+            );
+        });
+        
+        // --- Example 19: Form Serialization ---
+        jDoms('#runSerialize').on('click', () => {
+            const form = jDoms('#serialize-form');
+            const queryString = form.buildQuery();
+            jDoms('#serialize-output').text(queryString);
+        });
+
+        // --- Example 20: Event Triggering ---
+        const targetBtn = jDoms('#targetButton');
+        const triggerOutput = jDoms('#trigger-output');
+        let triggerCount = 0;
+
+        targetBtn.on('click', function() {
+            triggerCount++;
+            triggerOutput.text(`Target button has been clicked ${triggerCount} times.`);
+        });
+        
+        jDoms('#triggerButton').on('click', function() {
+            targetBtn.trigger('click');
+        });
+
+    });
+    </script>
+</body>
+</html>

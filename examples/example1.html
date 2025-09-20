@@ -1,0 +1,355 @@
+example1.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jDoms.js - Live Examples</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px Gg30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            background-color: #fdfdff;
+        }
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            color: white;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn-primary { background-color: #42b983; }
+        .btn-primary:hover { background-color: #36a473; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-info { background-color: #17a2b8; }
+        .btn-info:hover { background-color: #138496; }
+
+        .output-box {
+            background-color: #f1f3f5;
+            padding: 1rem;
+            border-radius: 8px;
+            min-height: 50px;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .user-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .user-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        #traversal-demo-area {
+            background: #f1f3f5;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        #traversal-demo-area div {
+            padding: 1rem;
+            margin: 0.5rem;
+            border: 2px solid #ced4da;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        #traversal-demo-area .highlight {
+            background-color: #d1fae5;
+            border-color: #42b983;
+        }
+        #traversal-demo-area .selected {
+             background-color: #a5d8ff;
+             border-color: #1c7ed6;
+        }
+        #animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #42b983;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+        }
+    </style>
+	
+    <script src="../src/jdoms-latest.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold mb-2">jDoms.js Live Demo</h1>
+            <p class="text-xl text-gray-600">Interactive examples showcasing the power of jDoms.</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Card 1: DOM Manipulation -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">1. DOM Manipulation</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Dynamically add, style, and modify elements.</p>
+                    <div class="flex flex-wrap gap-4 mb-4">
+                        <button id="addElement" class="btn btn-primary">Add</button>
+                        <button id="updateText" class="btn btn-secondary">Update Text</button>
+                        <button id="removeElement" class="btn btn-danger">Remove</button>
+                    </div>
+                    <div id="manipulation-box" class="output-box flex flex-wrap gap-2 items-center"></div>
+                </div>
+            </div>
+
+            <!-- Card 2: CSS & Class Manipulation -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">2. CSS & Classes</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Directly change styles and toggle CSS classes.</p>
+                    <div class="flex flex-wrap gap-4 mb-4">
+                        <button id="toggleClass" class="btn btn-primary">Toggle Class</button>
+                        <button id="changeCss" class="btn btn-secondary">Change CSS</button>
+                    </div>
+                    <div id="style-demo-box" class="h-24 bg-gray-200 rounded-lg transition-all duration-300 flex items-center justify-center font-bold text-gray-500">
+                        Style me!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Event Handling (Delegation) -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">3. Event Delegation</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Click 'Add Box'. New boxes are clickable thanks to event delegation.</p>
+                    <button id="addBox" class="btn btn-primary mb-4">Add a Box</button>
+                    <div id="box-container" class="output-box flex flex-wrap">
+                        <div class="w-20 h-20 bg-primary m-2 flex items-center justify-center text-white font-bold rounded-lg cursor-pointer box">Box 1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: DOM Traversal -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">4. DOM Traversal</h2></div>
+                <div class="card-body">
+                    <p class="mb-2">Click on the "Start Here" box, then use the buttons.</p>
+                    <div id="traversal-demo-area">
+                        <div class="level-1">Level 1
+                            <div class="level-2">Level 2
+                                <div class="level-3 special">Level 3 (Special)</div>
+                                <div class="level-3 start-point">Start Here</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button id="findParent" class="btn btn-info text-sm">Find Parent</button>
+                        <button id="findClosest" class="btn btn-info text-sm">Find .level-1</button>
+                        <button id="findChildren" class="btn btn-info text-sm">Find Children</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: AJAX Requests -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">5. AJAX Requests</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Fetch user data from a public API using `jDoms.ajax()`.</p>
+                    <button id="fetchUser" class="btn btn-primary">Fetch Random User</button>
+                    <div id="user-info" class="output-box min-h-[98px]">Click to load user...</div>
+                </div>
+            </div>
+
+            <!-- Card 6: Form Handling -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">6. Form Handling</h2></div>
+                <div class="card-body">
+                    <form id="demo-form" class="space-y-4">
+                        <input type="text" id="nameInput" placeholder="Name" class="w-full p-2 border rounded-md">
+                        <select id="topicSelect" class="w-full p-2 border rounded-md">
+                            <option value="tech">Technology</option>
+                            <option value="art">Art</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </form>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <button id="getFormValue" class="btn btn-primary">Get Value</button>
+                        <button id="setFormValue" class="btn btn-secondary">Set Value</button>
+                    </div>
+                    <div id="form-output" class="output-box"></div>
+                </div>
+            </div>
+
+             <!-- Card 7: Animation with Delays -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">7. Animation with `jDoms.delay`</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Run a simple animation sequence.</p>
+                    <button id="startAnimation" class="btn btn-primary">Start Animation</button>
+                    <div class="mt-4"><div id="animation-box"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 8: Utility Functions -->
+            <div class="card">
+                <div class="card-header"><h2 class="text-2xl font-semibold">8. Utility Functions</h2></div>
+                <div class="card-body">
+                    <p class="mb-4">Example of `jDoms.unique()` utility to filter an array.</p>
+                    <div class="mb-2"><strong>Original:</strong> [1, 2, 'a', 2, 3, 'b', 'a']</div>
+                    <div class="output-box"><strong>Unique:</strong> <span id="unique-output"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    jDoms.ready(function() {
+
+        // --- Example 1 & 2: DOM & Style Manipulation ---
+        const manipulationBox = jDoms('#manipulation-box');
+        const styleBox = jDoms('#style-demo-box');
+        let elementCount = 0;
+
+        jDoms('#addElement').on('click', () => {
+            elementCount++;
+            manipulationBox.append(jDoms('span', {'class': 'el p-2 bg-gray-200 rounded-md', 'data-id': elementCount}, `El ${elementCount}`).create());
+        });
+        jDoms('#updateText').on('click', () => manipulationBox.child('.el').last().text('Updated!'));
+        jDoms('#removeElement').on('click', () => manipulationBox.child('.el').last().remove());
+        jDoms('#toggleClass').on('click', () => {
+             const hasClass = styleBox.hasClass('highlight');
+             if(hasClass) {
+                styleBox.removeClass('highlight').text('Style me!');
+             } else {
+                styleBox.addClass('highlight').text('Styled!');
+             }
+        });
+        jDoms('#changeCss').on('click', () => styleBox.style({'transform': 'rotate(5deg) scale(1.1)', 'background-color': '#a5d8ff'}));
+
+
+        // --- Example 3: Event Delegation ---
+        const boxContainer = jDoms('#box-container');
+        let boxCount = 1;
+
+        jDoms('#addBox').on('click', () => {
+            boxCount++;
+            boxContainer.append(jDoms('div', {'class': 'box w-20 h-20 bg-primary m-2 flex items-center justify-center text-white font-bold rounded-lg cursor-pointer'}, `Box ${boxCount}`).create());
+        });
+
+        boxContainer.on('click', '.box', function() {
+            const el = jDoms(this);
+            el.text('Clicked!').style({'background-color': '#dc3545', 'transform': 'scale(1.1)'});
+            setTimeout(() => el.text(`Box...`).style({'background-color': '#42b983', 'transform': 'scale(1)'}), 1000);
+        });
+
+        // --- Example 4: Traversal ---
+        const traversalArea = jDoms('#traversal-demo-area');
+        let selectedEl = traversalArea.find('.start-point').addClass('selected');
+
+        traversalArea.on('click', 'div', function() {
+            traversalArea.find('div').removeClass('selected');
+            selectedEl = jDoms(this).addClass('selected');
+        });
+
+        const highlight = (el) => {
+            traversalArea.find('div').removeClass('highlight');
+            if (el.length > 0) el.addClass('highlight');
+        };
+
+        jDoms('#findParent').on('click', () => highlight(selectedEl.parent()));
+        jDoms('#findClosest').on('click', () => highlight(selectedEl.closest('.level-1')));
+        jDoms('#findChildren').on('click', () => highlight(selectedEl.children()));
+
+
+        // --- Example 5: AJAX ---
+        jDoms('#fetchUser').on('click', () => {
+            const userInfoBox = jDoms('#user-info');
+            userInfoBox.html('Loading...');
+            jDoms.ajax({
+                url: `https://jsonplaceholder.typicode.com/users/${Math.floor(Math.random()*10)+1}`,
+                method: 'GET',
+                onSuccess: (xhr) => {
+                    const user = jDoms.jsonParse(xhr.responseText);
+                    userInfoBox.html(`<div class="user-card"><img src="https://i.pravatar.cc/60?u=${user.email}" alt="${user.name}"><div><div class="font-bold">${user.name}</div><div class="text-gray-600">${user.email}</div></div></div>`);
+                },
+                onError: (xhr) => userInfoBox.html(`<div class="text-red-500">Error: ${xhr.status}</div>`)
+            });
+        });
+
+        // --- Example 6: Form Handling ---
+        const formOutput = jDoms('#form-output');
+        jDoms('#getFormValue').on('click', () => {
+            const name = jDoms('#nameInput').val();
+            const topic = jDoms('#topicSelect').val();
+            formOutput.text(`Name: ${name}, Topic: ${topic}`);
+        });
+        jDoms('#setFormValue').on('click', () => {
+            jDoms('#nameInput').val('Mamedul Islam');
+            jDoms('#topicSelect').val('art');
+            formOutput.text('Form values have been set.');
+        });
+
+        // --- Example 7: Animation ---
+        jDoms('#startAnimation').on('click', function() {
+            const box = jDoms('#animation-box');
+            box.style({'transform': 'translateX(0px)', 'background-color': '#42b983', 'border-radius': '8px'});
+            
+            jDoms.delay(() => {
+                box.style({'background-color': '#17a2b8', 'transform': 'translateX(50px)'});
+            }, 500);
+
+            jDoms.delay(() => {
+                box.style({'border-radius': '50%', 'transform': 'translateX(100px) rotate(180deg)'});
+            }, 1000);
+            
+            jDoms.delay(() => {
+                box.style({'transform': 'translateX(0px)', 'background-color': '#42b983', 'border-radius': '8px'});
+            }, 1500);
+        });
+
+        // --- Example 8: Utility Functions ---
+        jDoms('#unique-output').text(JSON.stringify(jDoms.unique([1, 2, 'a', 2, 3, 'b', 'a'])));
+
+    });
+    </script>
+</body>
+</html>
+
