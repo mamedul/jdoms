@@ -8,6 +8,10 @@
 
 **jDoms** is a fast, powerful, and zero-dependency JavaScript library for modern DOM manipulation, traversal, event handling, and more. It provides an intuitive, jQuery-like syntax for common tasks, empowering you to write cleaner, more efficient vanilla JS without the overhead of larger frameworks. It is the perfect lightweight alternative to jQuery for any project.
 
+<p style="text-align:center">
+<img src="https://mamedul.github.io/jdoms/jdoms-banner.png" alt="jDoms" width="1200" height="311" style="max-width: 100%; height: auto;">
+</p>
+
 [![Examples](https://img.shields.io/badge/Examples-View-blue?style=flat-square)](https://mamedul.github.io/jdoms/examples/)
 [![Browser Tests](https://img.shields.io/badge/Browser%20Tests-Run-green?style=flat-square)](https://mamedul.github.io/jdoms/browser-test.html)
 
