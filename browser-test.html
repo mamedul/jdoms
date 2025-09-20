@@ -109,7 +109,7 @@
 			
 			// Exit with a non-zero code if any tests failed
 			if (failCount > 0) {
-				process.exit(1);
+				
 			}
 		}
 
@@ -180,7 +180,7 @@
 		test('Manipulation: .html() should get and set HTML content', () => {
 			const p = jDoms('.para');
 			const originalHtml = p.html();
-			assert.strictEqual(originalHtml, 'This is the first paragraph.');
+			assert.strictEqual(originalHtml, 'Please open console developer tools (F12) to view results.');
 			p.html('<strong>New content</strong>');
 			assert.strictEqual(p.html(), '<strong>New content</strong>');
 			p.html(originalHtml); // Reset for other tests

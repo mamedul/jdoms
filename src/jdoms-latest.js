@@ -2828,9 +2828,9 @@
 				
 				if(_isSet(this[i].getBoundingClientRect)){
 					var r = this[i].getBoundingClientRect();
-					data.left==r.left;
+					data.left=r.left;
 					data.x=r.x;
-					data.top==r.top;
+					data.top=r.top;
 					data.y=r.y;
 				}
 

@@ -10,4 +10,4 @@
 
 <p><strong>Lightweight & Fast</strong> • <strong>jQuery-like Syntax</strong> • <strong>Zero Dependencies</strong></p>
 
-[GitHub](https://github.com/mamedul/jdoms "null") [Get Started](#jdoms-the-lightweight-vanilla-javascript-dom-utility-library "null")
+[GitHub](https://github.com/mamedul/jdoms "null") [Examples](https://mamedul.github.io/jdoms/examples "null") [Get Started](#jdoms-the-lightweight-vanilla-javascript-dom-utility-library "null")
